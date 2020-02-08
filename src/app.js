@@ -1,5 +1,6 @@
 const express = require('express')
 require('./db/mongoose')
+require('dontenv').config()
 const merchantRouter = require('../src/routers/merchant')
 const farmerRouter = require('../src/routers/farmer')
 const growRouter = require('../src/routers/grow')
