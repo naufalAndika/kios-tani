@@ -1,16 +1,13 @@
 const Grow = require('../models/grow')
 
 const create = async (data) => {
+    const grow = new Grow(data)
+    
     try {
-        await data.plant.populate({
-            path: 'Plant'
-        }).execPopulate()
+        await grow.save()
+        await grow.populate('plant').execPopulate()
 
-        const grow = new Grow({
-            ...data,
-            estimation: data.plant.yields / 10000 * data.landArea
-        })
-
+        grow.estimation = grow.plant.yields / 10000 * grow.landArea
         await grow.save()
 
         return {
