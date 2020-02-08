@@ -78,8 +78,9 @@ merchantSchema.statics.findByCredentials = async (email, password) => {
 
 merchantSchema.methods.generateAuthToken = async function () {
     const merchant = this
-    const token = jwt.sign({ _id: merchant._id.toString() }, process.env.JWT_SECRET)
-console.log(token);
+    console.log(process.env.JWT_SECRET);
+    
+    const token = jwt.sign({ _id: merchant._id.toString() }, 'KIOSTANI')
 
     merchant.tokens = merchant.tokens.concat({ token })
     await merchant.save()
