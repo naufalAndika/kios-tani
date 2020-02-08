@@ -1,6 +1,6 @@
 const express = require('express')
 require('./db/mongoose')
-require('dontenv').config()
+const cors = require('cors')
 const merchantRouter = require('../src/routers/merchant')
 const farmerRouter = require('../src/routers/farmer')
 const growRouter = require('../src/routers/grow')
@@ -12,6 +12,7 @@ const purchaseRouter = require('../src/routers/purchase')
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(merchantRouter)
 app.use(farmerRouter)
