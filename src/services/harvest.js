@@ -4,8 +4,6 @@ const create = async (data) => {
     const harvest = new Harvest(data)
     try {
         await harvest.save()
-        console.log(harvest);
-        
         await harvest.populate('grow').execPopulate()
 
         harvest.price = harvest.amount / harvest.grow.estimation        
