@@ -16,7 +16,11 @@ const purchaseSchema = new mongoose.Schema({
             type: Number,
             required: true
         }
-    }]
+    }],
+    isAccepted: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const Purchase = mongoose.model('Purchase', purchaseSchema)
