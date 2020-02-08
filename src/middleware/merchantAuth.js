@@ -5,7 +5,6 @@ const merchantAuth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '')        
         const decoded = jwt.verify(token, 'KIOSTANI')
-        console.log(decoded);
         
         const merchant = await Merchant.findOne({
             _id: decoded._id,
