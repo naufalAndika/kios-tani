@@ -8,7 +8,7 @@ beforeEach(setupDatabase)
 test('Should save new farmer data', async () => {
     await request(app)
         .post('/farmers')
-        .set('merchantAuth', `Bearer ${merchantOne.tokens[0].token}`)
+        .set('Authorization', `Bearer ${merchantOne.tokens[0].token}`)
         .send({
             name: 'Djoko Pramono',
             identityNumber: '3507131806990012',

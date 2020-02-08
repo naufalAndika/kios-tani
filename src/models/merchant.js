@@ -36,13 +36,6 @@ const merchantSchema = new mongoose.Schema({
     avatar: {
         type: Buffer
     },
-    members: [{
-        member: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'Farmer'
-        }
-    }],
     tokens: [{
         token: {
             type: String,

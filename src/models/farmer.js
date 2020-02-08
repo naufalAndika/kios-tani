@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
 
 const farmerSchema = new mongoose.Schema({
     name: {
@@ -21,6 +22,10 @@ const farmerSchema = new mongoose.Schema({
     },
     balance: {
         type: Number,
+    },
+    merchant: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 })
 
