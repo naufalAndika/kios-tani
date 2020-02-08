@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
+const bcrypt = require('bcryptjs')
 
 const merchantSchema = new mongoose.Schema({
     name: {
@@ -21,7 +23,8 @@ const merchantSchema = new mongoose.Schema({
     password: {
         type: String,
         trim: true,
-        minlength: 4
+        minlength: 4,
+        required: true
     },
     address: {
         type: String
@@ -39,6 +42,16 @@ const merchantSchema = new mongoose.Schema({
             ref: 'Farmer'
         }
     }]
+})
+
+merchantSchema.pre('save', async function (next) {
+    const merchant = this
+
+    if (merchant.isModified('password')) {
+        merchant.password = await bcrypt.hash(merchant.password, 8)
+    }
+
+    next()
 })
 
 const Merchant = mongoose.model('Merchant', merchantSchema)
