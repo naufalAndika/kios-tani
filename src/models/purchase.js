@@ -17,6 +17,9 @@ const purchaseSchema = new mongoose.Schema({
             required: true
         }
     }],
+    total: {
+        type: Number
+    },
     isAccepted: {
         type: Boolean,
         default: false
