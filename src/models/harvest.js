@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const harvestSchema = new mongoose.Schema({
-    plant: {
-        type: String,
+    grow: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     price: {
@@ -11,11 +11,6 @@ const harvestSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
-    },
-    farmer: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Farmer'
     }
 })
 
