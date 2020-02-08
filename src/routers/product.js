@@ -24,4 +24,14 @@ router.patch('/products/:id', merchantAuth, async (req, res) => {
     }
 })
 
+router.get('/products', async (req, res) => {
+    try {
+        const query = req.query.q
+        const response = await productService.search(query)
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+})
+
 module.exports = router

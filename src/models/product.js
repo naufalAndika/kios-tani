@@ -9,17 +9,18 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    goods: [{
-        harvest: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'Harvest'
-        }
+    goods: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Harvest'
     }],
     merchant: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Merchant'
+    },
+    stock: {
+        type: Number,
+        default: 0
     }
 })
 

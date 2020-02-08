@@ -1,4 +1,5 @@
 const Product = require('../models/product')
+const Harvest = require('../models/harvest')
 
 const create = async (data) => {
     const product = new Product(data)
@@ -14,10 +15,14 @@ const create = async (data) => {
     }
 }
 
-const addStock = async (id, harvest) => {
+const addStock = async (id, harvestId) => {
     try {
         const product = await Product.findById(id)
-        product.goods = product.goods.concat({ harvest })
+        product.goods = product.goods.concat(harvestId)
+        
+        const harvest = await Harvest.findById(harvestId)
+        product.stock += harvest.amount
+
         await product.save()
 
         return {
@@ -28,7 +33,22 @@ const addStock = async (id, harvest) => {
     }
 }
 
+const search = async (query) => {
+    try {
+        const products = await Product.find({
+            name: {'$regex': query}
+        })
+
+        return {
+            products
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
     create,
-    addStock
+    addStock,
+    search
 }
