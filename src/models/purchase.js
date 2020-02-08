@@ -6,15 +6,17 @@ const purchaseSchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product'
-    },
-    amount: {
-        type: Number,
-        required: true
-    }
+    goods: [{
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Product'
+        },
+        amount: {
+            type: Number,
+            required: true
+        }
+    }]
 })
 
 const Purchase = mongoose.model('Purchase', purchaseSchema)
