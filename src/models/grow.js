@@ -17,6 +17,11 @@ const growSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Farmer'
+    },
+    merchant: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Merchant'
     }
 })
 

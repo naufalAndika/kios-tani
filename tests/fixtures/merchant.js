@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
-const merchantOneId = new mongoose.Types.ObjectId
+const merchantOneId = new mongoose.Types.ObjectId()
 const merchantOne = {
     _id: merchantOneId,
     name: 'Kios Tani Donowarih',
