@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const harvestSchema = new mongoose.Schema({
     grow: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'Grow'
     },
     price: {
         type: Number
