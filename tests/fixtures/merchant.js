@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 
 const merchantOneId = new mongoose.Types.ObjectId
 const merchantOne = {
@@ -7,7 +8,10 @@ const merchantOne = {
     email: 'kiostanidonowarih@gmail.com',
     password: 'kiostanidonowarih',
     address: 'Jalan Raya Donowarih 21 Karang Ploso',
-    phone: '081234567876'
+    phone: '081234567876',
+    tokens: [{
+        token: jwt.sign({ _id: merchantOneId }, 'KIOSTANI')
+    }]
 }
 
 module.exports = {
