@@ -34,4 +34,13 @@ router.get('/products', async (req, res) => {
     }
 })
 
+router.get('/products/:id', async (req, res) => {
+    try {
+        const response = await productService.detail(req.params.id)
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+})
+
 module.exports = router

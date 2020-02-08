@@ -47,8 +47,20 @@ const search = async (query) => {
     }
 }
 
+const detail = async (id) => {
+    try {
+        const product = await Product.findById(id)
+        return {
+            product
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
     create,
     addStock,
-    search
+    search,
+    detail
 }
