@@ -12,6 +12,20 @@ const create = async (data) => {
     }
 }
 
+const pay = async (id) => {
+    try {
+        const purchase = await Purchase.findById(id)
+        purchase.isAccepted = true
+        await purchase.save()
+        return {
+            purchase
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
-    create
+    create,
+    pay
 }
