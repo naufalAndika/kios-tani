@@ -13,6 +13,21 @@ const create = async (data) => {
     }
 }
 
+const login = async (email, password) => {
+    try {
+        const merchant = await Merchant.findByCredentials(email, password)
+        const token = await merchant.generateAuthToken()
+
+        return {
+            merchant,
+            token
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
-    create
+    create,
+    login
 }

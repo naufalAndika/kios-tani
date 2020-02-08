@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const merchantSchema = new mongoose.Schema({
     name: {
@@ -41,6 +42,12 @@ const merchantSchema = new mongoose.Schema({
             required: true,
             ref: 'Farmer'
         }
+    }],
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
     }]
 })
 
@@ -53,6 +60,32 @@ merchantSchema.pre('save', async function (next) {
 
     next()
 })
+
+merchantSchema.statics.findByCredentials = async (email, password) => {
+    const merchant = await Merchant.findOne({ email })
+    
+    if (!merchant) {
+        throw new Error("Invalid Login")
+    }
+
+    const isMatch = await bcrypt.compare(password, merchant.password)
+    if (!isMatch) {
+        throw new Error("Invalid Login")
+    }
+    
+    return merchant
+}
+
+merchantSchema.methods.generateAuthToken = async function () {
+    const merchant = this
+    const token = jwt.sign({ _id: merchant._id.toString() }, process.env.JWT_SECRET)
+console.log(token);
+
+    merchant.tokens = merchant.tokens.concat({ token })
+    await merchant.save()
+
+    return token
+}
 
 const Merchant = mongoose.model('Merchant', merchantSchema)
 

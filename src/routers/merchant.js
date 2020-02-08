@@ -14,4 +14,13 @@ router.post('/merchants', async (req, res) => {
     }
 })
 
+router.post('/merchants/login', async (req, res) => {
+    try {
+        const response = await merchantService.login(req.body.email, req.body.password)
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
 module.exports = router

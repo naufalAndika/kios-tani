@@ -28,8 +28,17 @@ test('Should not save plain password', async () => {
 })
 
 test('Should login existing merchant', async () => {
-    await (await request(app).post('/merchants/login')).send({
-        email: 'kiostanimandiri@gmail.com',
-        password: 'kiostanimandiri'
+    await request(app).post('/merchants/login').send({
+        email: 'kiostanidonowarih@gmail.com',
+        password: 'kiostanidonowarih'
     }).expect(200)
+})
+
+test('Should return auth token when login', async () => {
+    const response = await request(app).post('/merchants/login').send({
+        email: 'kiostanidonowarih@gmail.com',
+        password: 'kiostanidonowarih'
+    }).expect(200)
+
+    expect(response.body.token).not.toEqual(undefined)
 })
