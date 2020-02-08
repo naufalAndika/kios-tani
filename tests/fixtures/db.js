@@ -1,4 +1,4 @@
-const Merchant = require('../src/models/merchant')
+const Merchant = require('../../src/models/merchant')
 
 const setupDatabase = async () => {
     await Merchant.deleteMany()
