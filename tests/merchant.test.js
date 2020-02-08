@@ -26,3 +26,10 @@ test('Should not save plain password', async () => {
     const password = response.body.merchant.password
     expect(password).not.toEqual('kiostanimandiri')
 })
+
+test('Should login existing merchant', async () => {
+    await (await request(app).post('/merchants/login')).send({
+        email: 'kiostanimandiri@gmail.com',
+        password: 'kiostanimandiri'
+    }).expect(200)
+})
