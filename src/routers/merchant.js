@@ -4,8 +4,6 @@ const merchantService = require('../services/merchant')
 const router = new express.Router()
 
 router.post('/merchants', async (req, res) => {        
-    const merchant = new Merchant(req.body)
-
     try {
         const response = await merchantService.create(req.body)
         res.status(201).send(response)

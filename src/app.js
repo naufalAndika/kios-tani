@@ -6,6 +6,7 @@ const growRouter = require('../src/routers/grow')
 const plantRouter = require('../src/routers/plant')
 const harvestRouter = require('../src/routers/harvest')
 const productRouter = require('../src/routers/product')
+const userRouter = require('../src/routers/user')
 
 const app = express()
 
@@ -16,5 +17,6 @@ app.use(growRouter)
 app.use(plantRouter)
 app.use(harvestRouter)
 app.use(productRouter)
+app.use(userRouter)
 
 module.exports = app
