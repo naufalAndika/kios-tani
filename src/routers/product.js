@@ -3,7 +3,7 @@ const merchantAuth = require('../middleware/merchantAuth')
 const productService = require('../services/product')
 const router = new express.Router()
 
-router.get('/products/', merchantAuth, async (req, res) => {
+router.get('/products/me', merchantAuth, async (req, res) => {
     try {
         const response = await productService.list(req.merchant)
         res.status(200).send(response)
