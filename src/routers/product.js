@@ -3,9 +3,9 @@ const merchantAuth = require('../middleware/merchantAuth')
 const productService = require('../services/product')
 const router = new express.Router()
 
-router.get('/products/:id', async (req, res) => {
+router.get('/products/', merchantAuth, async (req, res) => {
     try {
-        const response = await productService.list(req.params.id)
+        const response = await productService.list(req.merchant)
         res.status(200).send(response)
     } catch (e) {
         res.status(400).send(e.message)
