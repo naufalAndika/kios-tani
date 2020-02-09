@@ -12,4 +12,13 @@ router.post('/harvests', merchantAuth, async (req, res) => {
     }
 })
 
+router.get('/harvests', merchantAuth, async (req, res) => {
+    try {
+        const response = await harvestService.list(req.merchant)
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(400).send(e.message)
+    }
+})
+
 module.exports = router
