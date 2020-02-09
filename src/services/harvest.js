@@ -3,6 +3,7 @@ const Harvest = require('../models/harvest')
 const create = async (data) => {
     const harvest = new Harvest(data)
     try {
+        
         await harvest.save()
         await harvest.populate('grow').execPopulate()
 

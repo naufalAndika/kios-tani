@@ -12,6 +12,11 @@ const harvestSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
+    },
+    merchant: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Merchant'
     }
 })
 
