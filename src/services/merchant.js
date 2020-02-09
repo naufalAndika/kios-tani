@@ -38,8 +38,20 @@ const list = async () => {
     }
 }
 
+const logout = async (merchant) => {
+    try {
+        merchant.tokens = []
+        await merchant.save()
+
+        return "Logout Success"
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
     create,
     login,
-    list
+    list,
+    logout
 }
