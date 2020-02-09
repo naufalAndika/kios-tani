@@ -18,6 +18,21 @@ const create = async (data) => {
     }
 }
 
+const list = async (merchant) => {
+    try {
+        const grows = await Grow.find({
+            merchant
+        })
+
+        return {
+            grows
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
-    create
+    create,
+    list
 }
