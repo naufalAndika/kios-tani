@@ -13,6 +13,18 @@ const create = async (data) => {
     }
 }
 
+const list = async () => {
+    try {
+        const plants = await Plant.find({})
+        return {
+            plants
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
-    create
+    create,
+    list
 }

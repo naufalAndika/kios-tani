@@ -11,4 +11,13 @@ router.post('/plants', async (req, res) => {
     }
 })
 
+router.get('/plants', async (req, res) => {
+    try {
+        const response = await plantService.list()
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(400).send(e.message)
+    }
+})
+
 module.exports = router
