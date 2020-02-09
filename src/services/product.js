@@ -58,9 +58,23 @@ const detail = async (id) => {
     }
 }
 
+const list = async (merchant) => {
+    try {
+        const products = await Product({
+            merchant
+        })
+        return {
+            products
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
     create,
     addStock,
     search,
-    detail
+    detail,
+    list
 }

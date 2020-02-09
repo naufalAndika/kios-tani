@@ -16,9 +16,9 @@ router.post('/farmers', merchantAuth, async (req, res) => {
     }
 })
 
-router.get('/farmers', merchantAuth, async (req, res) => {
+router.get('/farmers/:id', async (req, res) => {
     try {
-        const response = await farmerService.list(req.merchant)
+        const response = await farmerService.list(req.params.id)
         res.status(200).send(response)
     } catch (e) {
         res.status(500).send(e.message)
