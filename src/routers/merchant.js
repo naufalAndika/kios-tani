@@ -3,6 +3,15 @@ const Merchant = require('../models/merchant')
 const merchantService = require('../services/merchant')
 const router = new express.Router()
 
+router.get('/merchants', async (req, res) => {
+    try {
+        const response = await merchantService.list()
+        res.status(201).send(response)
+    } catch (e) {
+        res.status(400).send(e.message)
+    }
+}) 
+
 router.post('/merchants', async (req, res) => {        
     try {
         const response = await merchantService.create(req.body)

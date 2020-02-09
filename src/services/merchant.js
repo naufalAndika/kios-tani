@@ -27,7 +27,19 @@ const login = async (email, password) => {
     }
 }
 
+const list = async () => {
+    try {
+        const merchants = await Merchant.find({})
+        return {
+            merchants
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
     create,
-    login
+    login,
+    list
 }
