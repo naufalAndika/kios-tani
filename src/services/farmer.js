@@ -11,6 +11,21 @@ const create = async (data) => {
     }
 }
 
+const list = async (merchant) => {
+    try {
+        const farmers = await Farmer.find({
+            merchant
+        })
+
+        return {
+            farmers
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
 module.exports = {
-    create
+    create,
+    list
 }

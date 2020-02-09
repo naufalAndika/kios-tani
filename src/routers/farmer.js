@@ -16,4 +16,13 @@ router.post('/farmers', merchantAuth, async (req, res) => {
     }
 })
 
+router.get('/farmers', merchantAuth, async (req, res) => {
+    try {
+        const response = await farmerService.list(req.merchant)
+        res.status(200).send(response)
+    } catch (e) {
+        res.status(500).send(e.message)
+    }
+})
+
 module.exports = router
